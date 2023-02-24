@@ -34,7 +34,7 @@ class _LocationScreenState extends State<LocationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
         child: SpinKitDoubleBounce(color: Colors.black87, size: 100.0),
       ),

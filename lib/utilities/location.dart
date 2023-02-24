@@ -6,15 +6,25 @@ class Location {
   double? latitude;
   double? longitude;
 
+
+
   Future<void> getCurrentLocation() async {
-    try {
+
+    LocationPermission permission;
+    permission = await Geolocator.checkPermission();
+    permission = await Geolocator.requestPermission();
+
+    if (permission != LocationPermission.denied ||
+        permission != LocationPermission.deniedForever) {
+      try {
       Position position = await Geolocator.getCurrentPosition(
-          desiredAccuracy: LocationAccuracy.best);
+          desiredAccuracy: LocationAccuracy.low);
       latitude = position.latitude;
       longitude = position.longitude;
     } catch (e) {
       // print('Something goes wrong: $e');
       log('Something goes wrong: $e');
+    }
     }
   }
 }
